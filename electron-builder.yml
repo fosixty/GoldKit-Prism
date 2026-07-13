@@ -40,7 +40,7 @@ mac:
     - target: dmg
       arch:
         - x64
-  icon: build/icon.ico
+  icon: build/prismlogo.png
   category: public.app-category.music
   extraResources:
     - from: resources/ptformat/darwin-x64
@@ -55,7 +55,7 @@ linux:
     - target: AppImage
       arch:
         - x64
-  icon: build/icon.ico
+  icon: build/prismlogo.png
   category: Audio
   extraResources:
     - from: resources/ptformat/linux-x64
