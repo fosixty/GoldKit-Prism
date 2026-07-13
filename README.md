@@ -103,13 +103,23 @@ npm test                       # Run unit tests
 # Production builds  
 npm run build                  # Build renderer and main processes
 npm run dist                   # Create platform-specific installer
-npm run dist:win              # Windows installer only
+npm run dist:win               # Windows installer only
+npm run dist:mac               # macOS Intel (x64) DMG only
 
 # Native modules
-npm run build:native           # Compile ptformat/ptx-json binaries
+npm run build:ptformat         # Verify win32 ptformat or compile darwin-x64 from source
+npm run build:native           # build:ptformat + ptx-json cmake build
 npm run copy:ptformat-dlls     # Copy required Windows DLLs
 npm run build:icon             # Generate app icon from PNG source
 ```
+
+On macOS, `npm run build:ptformat` compiles `ptftool` from `native/ptx-json/ptformat` via `arch -x86_64 make` and installs it as `resources/ptformat/darwin-x64/ptformat`. GitHub Actions runs the same step before packaging the Intel DMG.
+
+Platform-specific ptformat binaries are bundled per target:
+
+- Windows: `resources/ptformat/win32/ptformat.exe`
+- macOS Intel: `resources/ptformat/darwin-x64/ptformat`
+- macOS Apple Silicon (optional): `resources/ptformat/darwin-arm64/ptformat`
 
 ### Project Structure
 
@@ -132,6 +142,9 @@ native/
 resources/
 ├── bin/                      # Compiled native binaries
 └── ptformat/                 # Platform-specific ptformat binaries
+    ├── win32/
+    ├── darwin-x64/
+    └── darwin-arm64/
 ```
 
 ### Architecture

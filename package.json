@@ -11,10 +11,12 @@
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "build:icon": "tsx scripts/build-icon.ts",
+    "build:ptformat": "tsx scripts/build-ptformat.ts",
     "build:native": "tsx scripts/build-native.ts",
     "copy:ptformat-dlls": "tsx scripts/copy-ptformat-dlls.ts",
     "dist": "npm run build:icon && npm run build:native && npm run build && electron-builder",
     "dist:win": "npm run build:icon && npm run build:native && npm run build && electron-builder --win",
+    "dist:mac": "npm run build:icon && npm run build:native && npm run build && electron-builder --mac --x64",
     "test": "vitest run",
     "postinstall": "node node_modules/electron/install.js"
   },

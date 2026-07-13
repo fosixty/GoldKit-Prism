@@ -17,14 +17,6 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 
 extraResources:
-  - from: resources/ptformat
-    to: ptformat
-    filter:
-      - '**/*'
-  - from: resources/bin
-    to: bin
-    filter:
-      - '**/*'
   - from: build/icon.ico
     to: icon.ico
 
@@ -35,15 +27,28 @@ win:
         - x64
   icon: build/icon.ico
   verifyUpdateCodeSignature: false
+  extraResources:
+    - from: resources/ptformat/win32
+      to: ptformat/win32
+    - from: resources/bin
+      to: bin
+      filter:
+        - ptx-json.exe
 
 mac:
   target:
     - target: dmg
       arch:
         - x64
-        - arm64
   icon: build/icon.ico
   category: public.app-category.music
+  extraResources:
+    - from: resources/ptformat/darwin-x64
+      to: ptformat/darwin-x64
+    - from: resources/bin
+      to: bin
+      filter:
+        - ptx-json
 
 linux:
   target:
@@ -52,6 +57,13 @@ linux:
         - x64
   icon: build/icon.ico
   category: Audio
+  extraResources:
+    - from: resources/ptformat/linux-x64
+      to: ptformat/linux-x64
+    - from: resources/bin
+      to: bin
+      filter:
+        - ptx-json
 
 nsis:
   oneClick: false
@@ -64,7 +76,7 @@ nsis:
   uninstallerIcon: build/icon.ico
 
 dmg:
-  artifactName: ${productName}-${version}.${ext}
+  artifactName: ${productName}-${version}-mac-x64.${ext}
 
 appImage:
   artifactName: ${productName}-${version}.${ext}

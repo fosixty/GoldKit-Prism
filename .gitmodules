@@ -1,0 +1,4 @@
+[submodule "native/ptx-json/ptformat"]
+	path = native/ptx-json/ptformat
+	url = https://github.com/zamaudio/ptformat.git
+	# Vendored at commit d8ed6e08cdf8055e06163e40f329f3a0499c6463 (source committed in-tree for CI)

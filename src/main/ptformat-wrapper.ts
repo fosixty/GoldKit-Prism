@@ -1,5 +1,4 @@
 import { spawn } from 'child_process'
-import { app } from 'electron'
 import { existsSync } from 'fs'
 import { basename, dirname, extname, join, resolve } from 'path'
 import {
@@ -11,6 +10,7 @@ import {
   PTFORMAT_SPAWN_TIMEOUT_MS,
 } from '../shared/security-limits'
 import type { PtformatDebugRecord, SessionMetadata, SessionRegion, SessionTrack } from '../shared/types'
+import { getExpectedPtformatBinaryPath, getPtformatBinaryPath } from './native-binaries'
 
 type UnknownRecord = Record<string, unknown>
 
@@ -49,30 +49,6 @@ function getSessionName(ptxPath: string): string {
 
 function getSessionDir(ptxPath: string): string {
   return dirname(resolve(ptxPath))
-}
-
-function getPtformatBinaryPath(): string {
-  const binary = process.platform === 'win32' ? 'ptformat.exe' : 'ptformat'
-  const platformDir =
-    process.platform === 'win32' ? 'win32' : process.platform === 'darwin' ? 'darwin' : 'linux'
-
-  const candidates = [
-    join(process.resourcesPath, 'ptformat', platformDir, binary),
-    join(app.getAppPath(), '..', 'resources', 'ptformat', platformDir, binary),
-    join(app.getAppPath(), 'resources', 'ptformat', platformDir, binary),
-  ]
-
-  if (!app.isPackaged) {
-    candidates.push(join(process.cwd(), 'resources', 'ptformat', platformDir, binary))
-  }
-
-  for (const candidate of candidates) {
-    if (existsSync(candidate)) return candidate
-  }
-
-  // If the binary is missing, callers should treat alignment as unavailable,
-  // but the rest of the app must continue to function using the raw export path.
-  throw new Error('ptformat binary not found; timeline alignment is unavailable.')
 }
 
 // Both ptformat.exe and ptx-json.exe hardcode targetsr=48000 when calling ptf.load().
@@ -293,14 +269,7 @@ export async function parseSessionWithPtformat(ptxPath: string): Promise<Session
     binaryPath = getPtformatBinaryPath()
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
-    const platformDir =
-      process.platform === 'win32' ? 'win32' : process.platform === 'darwin' ? 'darwin' : 'linux'
-    const missingBinaryPath = join(
-      process.resourcesPath,
-      'ptformat',
-      platformDir,
-      process.platform === 'win32' ? 'ptformat.exe' : 'ptformat',
-    )
+    const missingBinaryPath = getExpectedPtformatBinaryPath()
     lastPtformatDebugRecord = createDebugRecord({
       binaryPath: missingBinaryPath,
       args,

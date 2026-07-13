@@ -21,9 +21,13 @@ Thumbs.db
 
 # Generated icons and binaries
 build/icon.ico
-resources/bin/*.exe
+resources/bin/ptx-json
+resources/bin/ptx-json.exe
 resources/ptformat/**/*.exe
 resources/ptformat/**/*.dll
+resources/ptformat/darwin-x64/ptformat
+resources/ptformat/darwin-arm64/ptformat
+resources/ptformat/linux-x64/ptformat
 
 # Logs
 *.log
