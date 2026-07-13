@@ -1,6 +1,6 @@
 {
   "name": "prism",
-  "version": "1.0.0",
+  "version": "0.9.0-beta.1",
   "type": "module",
   "description": "GoldKit Prism — extract raw audio stems from Pro Tools sessions",
   "main": "./out/main/index.js",
