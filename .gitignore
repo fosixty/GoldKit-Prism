@@ -23,11 +23,11 @@ Thumbs.db
 build/icon.ico
 resources/bin/ptx-json
 resources/bin/ptx-json.exe
-resources/ptformat/**/*.exe
-resources/ptformat/**/*.dll
+# CI-built / local-built macOS/Linux ptformat (do not commit)
 resources/ptformat/darwin-x64/ptformat
 resources/ptformat/darwin-arm64/ptformat
 resources/ptformat/linux-x64/ptformat
+# Keep win32 prebuilt bundle tracked (ptformat.exe + DLLs)
 
 # Logs
 *.log
