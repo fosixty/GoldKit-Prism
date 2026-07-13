@@ -8,6 +8,9 @@ on:
   pull_request:
     branches: [main, master]
 
+permissions:
+  contents: write
+
 jobs:
   build-win:
     runs-on: windows-latest
@@ -37,9 +40,7 @@ jobs:
         run: npm run build
 
       - name: Package Windows installer
-        run: npx electron-builder --win --x64 --config electron-builder.yml
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --win --x64 --publish never --config electron-builder.yml
 
       - name: Upload Windows artifacts
         uses: actions/upload-artifact@v4
@@ -79,9 +80,7 @@ jobs:
         run: npm run build
 
       - name: Package macOS Intel DMG
-        run: npx electron-builder --mac --x64 --config electron-builder.yml
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --mac --x64 --publish never --config electron-builder.yml
 
       - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
@@ -91,7 +90,11 @@ jobs:
           if-no-files-found: error
 
   release:
-    if: startsWith(github.ref, 'refs/tags/v')
+    if: >
+      github.event_name == 'push' &&
+      (github.ref == 'refs/heads/main' ||
+       github.ref == 'refs/heads/master' ||
+       startsWith(github.ref, 'refs/tags/v'))
     needs: [build-win, build-mac]
     runs-on: ubuntu-latest
     steps:
@@ -101,7 +104,15 @@ jobs:
 
       - uses: softprops/action-gh-release@v2
         with:
-          files: artifacts/**/*
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/v') && github.ref_name || 'beta' }}
+          name: ${{ startsWith(github.ref, 'refs/tags/v') && format('Prism {0}', github.ref_name) || 'Prism Beta' }}
           prerelease: true
+          make_latest: false
+          files: |
+            artifacts/**/*.exe
+            artifacts/**/*.dmg
+            artifacts/**/*.yml
+            artifacts/**/*.blockmap
+          fail_on_unmatched_files: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

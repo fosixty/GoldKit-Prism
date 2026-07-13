@@ -31,10 +31,11 @@ Prism extracts individual audio tracks (stems) from Pro Tools sessions, preservi
 
 ### Download Pre-built Releases
 1. Go to [Releases](../../releases)
-2. Download the appropriate installer for your platform:
-   - **Windows**: `Prism-1.0.0-Setup.exe`
-   - **macOS**: `Prism-1.0.0.dmg`
-3. Run the installer and follow the setup instructions
+2. For the latest studio build, download from the **[Prism Beta](../../releases/tag/beta)** prerelease (updated on every `main` push):
+   - **Windows**: `Prism-*-Setup.exe`
+   - **macOS (Intel)**: `Prism-*-mac-x64.dmg`
+3. Versioned tags (`v*`) also publish as prereleases (e.g. `v1.0.0-beta.1`) for frozen snapshots.
+4. Run the installer and follow the setup instructions
 
 ### System Requirements
 - **Windows**: Windows 10 or later (x64)
