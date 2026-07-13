@@ -1,0 +1,59 @@
+# Dependencies
+node_modules
+
+# Build outputs
+out
+dist
+tools
+
+# Environment files
+.env
+.env.*
+*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+
+# Generated icons and binaries
+build/icon.ico
+resources/bin/*.exe
+resources/ptformat/**/*.exe
+resources/ptformat/**/*.dll
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# nyc test coverage
+.nyc_output
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Compiled native modules
+native/**/build/
+native/**/Release/
+native/**/Debug/
+
+# Auto-generated certificates or keys
+*.p12
+*.key
+*.crt
+*.pem

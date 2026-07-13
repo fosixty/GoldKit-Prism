@@ -1,0 +1,47 @@
+{
+  "name": "prism",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "GoldKit Prism — extract raw audio stems from Pro Tools sessions",
+  "main": "./out/main/index.js",
+  "author": "GoldKit",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "build:icon": "tsx scripts/build-icon.ts",
+    "build:native": "tsx scripts/build-native.ts",
+    "copy:ptformat-dlls": "tsx scripts/copy-ptformat-dlls.ts",
+    "dist": "npm run build:icon && npm run build:native && npm run build && electron-builder",
+    "dist:win": "npm run build:icon && npm run build:native && npm run build && electron-builder --win",
+    "test": "vitest run",
+    "postinstall": "node node_modules/electron/install.js"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "electron-store": "^10.0.1",
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "wavefile": "^11.0.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^5.1.4",
+    "autoprefixer": "^10.4.20",
+    "electron": "^43.0.0",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^5.0.0",
+    "png-to-ico": "^3.0.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vite": "^7.3.6",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "libgcc_s_seh-1.dll": "ff139cfe956709283f7b70a06af8bc8bb9d1c3bef60ec1bc8d363c91351cfeb2",
+  "libglib-2.0-0.dll": "f606ad14f15d822a21a2e15f9f22a37318a269afab5d4c6020677acfae720b7f",
+  "libiconv-2.dll": "94ec68fb8d342b6c91b6b48a8d95092819cdcd006a7166e0b68062f946afd08a",
+  "libintl-8.dll": "0e5a178731e6be6d115442a6ade3df7f03265cd1fc4338f8b6f86a8001cbf582",
+  "libpcre2-8-0.dll": "52ccc7e4ec5ad0aecf307c0328826340f5d504aa59f7c4143b9a1b9fff16ccda",
+  "libstdc++-6.dll": "d9a58184f6bb27936ef03c3a3286950e4aa61c66a9f74dfa94a532b1433b368d",
+  "libwinpthread-1.dll": "196fc30f4baa39f4b8090466cc7fd79df387cb1b70b3b57d00c298de6ba75d6a",
+  "ptformat.exe": "ea4b445bf0f58e1908323dae3d3c3a6d73b4c0351d292e2563d24dde341f3ee1"
+}

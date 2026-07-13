@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-goldkit-bg text-zinc-100 antialiased;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    @apply outline-none ring-2 ring-goldkit-gold ring-offset-2 ring-offset-goldkit-bg;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl border border-goldkit-border bg-goldkit-surface;
+  }
+
+  .btn-primary {
+    @apply rounded-lg bg-goldkit-gold px-4 py-2 font-medium text-black transition hover:bg-goldkit-gold-light disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply rounded-lg border border-goldkit-border bg-goldkit-surface px-4 py-2 text-zinc-200 transition hover:border-goldkit-gold hover:text-white disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}

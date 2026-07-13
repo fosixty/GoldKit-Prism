@@ -1,0 +1,70 @@
+appId: com.goldkit.prism
+productName: Prism
+copyright: Copyright © 2026 GoldKit
+
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!scripts/*'
+  - '!native/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+
+extraResources:
+  - from: resources/ptformat
+    to: ptformat
+    filter:
+      - '**/*'
+  - from: resources/bin
+    to: bin
+    filter:
+      - '**/*'
+  - from: build/icon.ico
+    to: icon.ico
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: build/icon.ico
+  verifyUpdateCodeSignature: false
+
+mac:
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  icon: build/icon.ico
+  category: public.app-category.music
+
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  icon: build/icon.ico
+  category: Audio
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  artifactName: ${productName}-${version}-Setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: GoldKit Prism
+  createDesktopShortcut: always
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+
+dmg:
+  artifactName: ${productName}-${version}.${ext}
+
+appImage:
+  artifactName: ${productName}-${version}.${ext}
