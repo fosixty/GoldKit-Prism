@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build app icon
+        run: npm run build:icon
+
       - name: Build ptformat (verify win32 bundle)
         run: npm run build:ptformat
 
@@ -59,6 +62,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Build app icon
+        run: npm run build:icon
 
       - name: Build ptformat (darwin-x64)
         run: npm run build:ptformat
